@@ -73,6 +73,14 @@ extension SwiftSocket: WebSocketDelegate {
                 if let block = socketReceiveBlocks[packet.Identifier] {
                     block(packet, nil)
                 }
+                
+                /*
+                 text("{\n  \"Message\": \"192.168.0.189:53710/12312312/USERNAME joined [windows/12312312]\",\n  \"Identifier\": 0,\n  \"Type\": \"Generic\",\n  \"Stacktrace\": \"\"\n}")
+                 */
+                if packet.Identifier == 0 && packet.Message.contains("joined") {
+                    // TODO: refresh player list
+                }
+                
             } catch let error {
                 print(error)
             }

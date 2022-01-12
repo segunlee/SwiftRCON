@@ -11,9 +11,10 @@ import Foundation
 // TEMP
 enum Server {
     struct ConnectInfo {
-        var ip: String = ""
-        var rconPort: String = ""
-        var rconPassword: String = ""
+        // TEMPTEMP
+        var ip: String = (UserDefaults.standard.value(forKey: "_SIP") as? String) ?? ""
+        var rconPort: String = (UserDefaults.standard.value(forKey: "_SPT") as? String) ?? ""
+        var rconPassword: String = (UserDefaults.standard.value(forKey: "_PW") as? String) ?? ""
         
         func makeURL() -> URL {
             let urlStr = "ws://\(ip):\(rconPort)/\(rconPassword)"

@@ -25,11 +25,9 @@ extension UITextView {
     func scrollToBottom() {
         let textCount: Int = text.count
         guard textCount >= 1 else { return }
-        UIView.setAnimationsEnabled(false)
-        scrollRangeToVisible(NSRange(location: textCount - 1, length: 1))
-        UIView.setAnimationsEnabled(true)
-        isScrollEnabled = false
-        isScrollEnabled = true
+        
+        let range = NSMakeRange(text.lengthOfBytes(using: .utf8), 0);
+        scrollRangeToVisible(range);
     }
 }
 

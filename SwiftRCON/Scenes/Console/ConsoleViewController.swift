@@ -121,8 +121,13 @@ class ConsoleViewController: UIViewController, ConsoleDisplayLogic {
             str.append(attr)
             consoleTextView.attributedText = str
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-            self.consoleTextView.scrollToBottom()
+        
+        consoleTextView.scrollToBottom()
+        
+        if isInit {
+            DispatchQueue.main.asyncAfter(deadline: .now() + (isInit ? 1 : 0)) {
+                self.consoleTextView.scrollToBottom()
+            }
         }
     }
     

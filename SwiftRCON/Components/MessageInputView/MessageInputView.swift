@@ -45,6 +45,7 @@ class MessageInputView: UIControl {
             sendMessages.append(message)
         }
     }
+    internal var returnKeyToSend: Bool = true
     private var sendMessages = [String]()
     private var historyIndex = NSNotFound
     
@@ -98,6 +99,14 @@ extension MessageInputView: UITextViewDelegate {
         heightConstraint?.constant = size.height < maxHeight ? size.height : maxHeight
         sendActions(for: .valueChanged)
     }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n" && returnKeyToSend {
+            didTapSendButton(sendButton)
+            return false
+        }
+        return true
+    }
 }
 
 
@@ -128,6 +137,14 @@ extension MessageInputView {
         border.autoresizingMask = [.flexibleWidth, .flexibleBottomMargin]
         border.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: 0.5)
         addSubview(border)
+        
+        if true {
+            let border = UIView()
+            border.backgroundColor = .lightGray
+            border.autoresizingMask = [.flexibleWidth, .flexibleTopMargin]
+            border.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: 0.5)
+            addSubview(border)
+        }
     }
 }
 

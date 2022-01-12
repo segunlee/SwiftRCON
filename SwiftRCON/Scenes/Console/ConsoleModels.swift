@@ -56,6 +56,12 @@ enum Console {
                     str.append(line)
                     str.append(NSAttributedString(string: "\n"))
                 }
+                
+                let paragraphStyle = NSMutableParagraphStyle()
+                paragraphStyle.lineSpacing = 0
+                paragraphStyle.lineHeightMultiple = 1.5
+
+                str.addAttributes([NSAttributedString.Key.paragraphStyle : paragraphStyle], range: NSRange(location: 0, length: str.string.count))
                 return str
             }
         }

@@ -43,6 +43,7 @@
 		B384540C278D4BA200153543 /* ChatInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3845406278D4BA100153543 /* ChatInteractor.swift */; };
 		B3891C83278E9ED700E01AB2 /* KeyboardLayoutGuide in Frameworks */ = {isa = PBXBuildFile; productRef = B3891C82278E9ED700E01AB2 /* KeyboardLayoutGuide */; };
 		B3891C87278EA12C00E01AB2 /* MessageInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3891C86278EA12C00E01AB2 /* MessageInputView.swift */; };
+		B3F355F3278EF29D00F3CF9D /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B3F355F2278EF29D00F3CF9D /* Settings.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +102,7 @@
 		B3845405278D4BA100153543 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		B3845406278D4BA100153543 /* ChatInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatInteractor.swift; sourceTree = "<group>"; };
 		B3891C86278EA12C00E01AB2 /* MessageInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageInputView.swift; sourceTree = "<group>"; };
+		B3F355F2278EF29D00F3CF9D /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +155,7 @@
 		B351B80D278BC3C40011DCD4 /* SwiftRCON */ = {
 			isa = PBXGroup;
 			children = (
+				B3F355F1278EF23500F3CF9D /* Resources */,
 				B351B85B278C011F0011DCD4 /* Extensions */,
 				B3891C84278EA0F600E01AB2 /* Components */,
 				B351B85E278C05B40011DCD4 /* DataStore */,
@@ -161,7 +164,6 @@
 				B351B80E278BC3C40011DCD4 /* AppDelegate.swift */,
 				B351B810278BC3C40011DCD4 /* SceneDelegate.swift */,
 				B351B814278BC3C40011DCD4 /* Main.storyboard */,
-				B351B817278BC3C50011DCD4 /* Assets.xcassets */,
 				B351B819278BC3C50011DCD4 /* LaunchScreen.storyboard */,
 				B351B81C278BC3C50011DCD4 /* Info.plist */,
 			);
@@ -286,6 +288,15 @@
 			path = MessageInputView;
 			sourceTree = "<group>";
 		};
+		B3F355F1278EF23500F3CF9D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B351B817278BC3C50011DCD4 /* Assets.xcassets */,
+				B3F355F2278EF29D00F3CF9D /* Settings.bundle */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -398,6 +409,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3F355F3278EF29D00F3CF9D /* Settings.bundle in Resources */,
 				B351B81B278BC3C50011DCD4 /* LaunchScreen.storyboard in Resources */,
 				B351B818278BC3C50011DCD4 /* Assets.xcassets in Resources */,
 				B351B816278BC3C40011DCD4 /* Main.storyboard in Resources */,
