@@ -38,10 +38,21 @@ enum Chat {
 }
 
 
-//struct ChatUser: MSGUser {
-//    var displayName: String
-//    var avatar: UIImage?
-//    var isSender: Bool
-//}
-
 typealias ChatMessage = RustChat
+extension ChatMessage: ChatMessageProtocol {
+    var name: String {
+        return username
+    }
+    
+    var date: Date {
+        return Date(timeIntervalSince1970: Double(time))
+    }
+    
+    var isIncoming: Bool {
+        return username != "SERVER"
+    }
+    
+    var steamID: String {
+        return userId
+    }
+}

@@ -71,22 +71,6 @@
             </objects>
             <point key="canvasLocation" x="-168" y="352"/>
         </scene>
-        <!--Chat View Controller-->
-        <scene sceneID="0m7-uY-3WB">
-            <objects>
-                <viewController id="A05-AM-O42" customClass="ChatViewController" customModule="SwiftRCON" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="TDZ-na-Gqg">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="c39-Po-1Fh"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="R0u-L3-UsM"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Zqh-7s-ja9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-168" y="1039"/>
-        </scene>
         <!--Chat-->
         <scene sceneID="AEq-H4-VSK">
             <objects>
@@ -97,12 +81,41 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="A05-AM-O42" kind="relationship" relationship="rootViewController" id="uq6-Yy-5Zf"/>
+                        <segue destination="Miq-5e-Y0W" kind="relationship" relationship="rootViewController" id="OYs-Nr-Aje"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mFz-C7-epE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1023" y="1039"/>
+        </scene>
+        <!--Chat View Controller-->
+        <scene sceneID="Ddx-Yc-Csn">
+            <objects>
+                <tableViewController id="Miq-5e-Y0W" customClass="ChatViewController" customModule="SwiftRCON" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="VIs-1i-sQ0">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="mAm-MW-26G">
+                                <rect key="frame" x="0.0" y="44.5" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mAm-MW-26G" id="VR7-Ix-cK3">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Miq-5e-Y0W" id="KaO-VH-JPY"/>
+                            <outlet property="delegate" destination="Miq-5e-Y0W" id="CP0-6Z-5I4"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="Oex-xA-Hf5"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FXb-Xb-FU7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-168" y="1039"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="4oq-KG-vDe">

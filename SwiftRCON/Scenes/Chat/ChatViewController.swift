@@ -18,7 +18,7 @@ protocol ChatDisplayLogic: AnyObject {
     func displayReceiveChat(viewModel: Chat.ReceiveChat.ViewModel)
 }
 
-class ChatViewController: UIViewController, ChatDisplayLogic {
+class ChatViewController: UITableViewController, ChatDisplayLogic {
     var interactor: ChatBusinessLogic?
     var router: (NSObjectProtocol & ChatRoutingLogic & ChatDataPassing)?
     
@@ -66,6 +66,7 @@ class ChatViewController: UIViewController, ChatDisplayLogic {
         super.viewDidLoad()
         title = "Chats"
         handleNotifications()
+        chatProvier.registerTableView(tableView)
         interactor?.fetchChat(request: .init())
     }
     
@@ -81,26 +82,29 @@ class ChatViewController: UIViewController, ChatDisplayLogic {
     // MARK: Noticication
     func handleNotifications() {
         NotificationCenter.default.addObserver(forName: .SocketDidConnect, object: nil, queue: .main) { [weak self] _ in
-            self?.messages.removeAll()
+            self?.chatProvier.messages.removeAll()
+            self?.tableView.reloadData()
             self?.interactor?.fetchChat(request: .init())
         }
-        NotificationCenter.default.addObserver(forName: .SocketDidDisconnect, object: nil, queue: .main) { [weak self] _ in
-            self?.messages.removeAll()
+        NotificationCenter.default.addObserver(forName: .SocketDidDisconnect, object: nil, queue: .main) { _ in
+//            self?.chatProvier.messages.removeAll()
         }
     }
     
     
     // MARK: CHAT
-    var messages = [[ChatMessage]]()
+    var chatProvier = ChatProvider()
     
     func displayFetchChat(viewModel: Chat.FetchChat.ViewModel) {
-        messages.removeAll()
-        
         // TODO:..
+        chatProvier.initial(messages: viewModel.chats)
+        tableView.reloadData()
         interactor?.receiveChat(request: .init())
     }
     
     func displayReceiveChat(viewModel: Chat.ReceiveChat.ViewModel) {
         // TODO:..
+        chatProvier.insert(message: viewModel.message)
+        tableView.reloadData()
     }
 }

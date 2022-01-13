@@ -60,3 +60,12 @@ extension UIApplication {
         return base
     }
 }
+
+
+extension Date {
+    func toString(dateFormat: String = "a hh:mm") -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = dateFormat
+        return dateFormatter.string(from: self)
+    }
+}
