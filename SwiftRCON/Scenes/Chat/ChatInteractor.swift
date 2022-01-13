@@ -37,23 +37,7 @@ class ChatInteractor: ChatBusinessLogic, ChatDataStore {
                 return
             }
             
-//            var id = 0
-//            var users = [ChatUser]()
-//            let collect: [ChatMessage] = chats.compactMap { rustChat in
-//                id += 1
-//
-//                let user: ChatUser
-//                if let _user = users.filter({$0.displayName == rustChat.username}).first {
-//                    user = _user
-//                } else {
-//                    user = ChatUser(displayName: rustChat.username, avatar: UIImage(systemName: "person.crop.circle.fill"), isSender: rustChat.userId == "0")
-//                    users.append(user)
-//                }
-//
-//                return ChatMessage(id: id, body: .text(rustChat.message), user: user, sentAt: rustChat.getDate())
-//            }
-            
-//            self?.presenter?.presentFetchChat(response: .init(chats: collect))
+            self?.presenter?.presentFetchChat(response: .init(chats: chats))
         }
     }
     
@@ -71,9 +55,7 @@ class ChatInteractor: ChatBusinessLogic, ChatDataStore {
                 return
             }
             
-//            let user = ChatUser(displayName: chat.username, avatar: UIImage(systemName: "person.crop.circle.fill"), isSender: chat.userId == "0")
-//            let message = ChatMessage(id: 9999, body: .text(chat.message), user: user, sentAt: chat.getDate())
-//            self?.presenter?.presentReceiveChat(response: .init(message: message))
+            self?.presenter?.presentReceiveChat(response: .init(message: chat))
         }
     }
 }

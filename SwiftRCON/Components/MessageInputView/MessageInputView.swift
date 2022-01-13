@@ -62,7 +62,7 @@ class MessageInputView: UIControl {
         t.translatesAutoresizingMaskIntoConstraints = false
         t.font = .systemFont(ofSize: 14)
         t.textColor = .darkGray
-        t.textContainerInset = UIEdgeInsets(top: 15, left: 10, bottom: 15, right: 55)
+        t.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 55)
         return t
     }()
     
@@ -73,6 +73,7 @@ class MessageInputView: UIControl {
         b.translatesAutoresizingMaskIntoConstraints = false
         return b
     }()
+    
 }
 
 
@@ -86,16 +87,19 @@ extension MessageInputView {
 extension MessageInputView: UITextViewDelegate {
     private func setupTextView() {
         addSubview(textView)
-        textView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        textView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        textView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        textView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        textView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
+        textView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
+        textView.topAnchor.constraint(equalTo: topAnchor, constant: 5).isActive = true
+        textView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5).isActive = true
         textView.delegate = self
+        textView.backgroundColor = .red
+        textView.cornerRadius = minHeight / 2
     }
     
     func textViewDidChange(_ textView: UITextView) {
         sendButton.isEnabled = textView.text.count > 0
-        let size = textView.sizeThatFits(CGSize(width: textView.bounds.width, height: .infinity))
+        var size = textView.sizeThatFits(CGSize(width: textView.bounds.width, height: .infinity))
+        size.height += 10
         heightConstraint?.constant = size.height < maxHeight ? size.height : maxHeight
         sendActions(for: .valueChanged)
     }
@@ -113,7 +117,7 @@ extension MessageInputView: UITextViewDelegate {
 extension MessageInputView {
     private func setupSendButton() {
         addSubview(sendButton)
-        sendButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
+        sendButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15).isActive = true
         sendButton.widthAnchor.constraint(equalToConstant: 35).isActive = true
         sendButton.heightAnchor.constraint(equalToConstant: 35).isActive = true
         sendButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true

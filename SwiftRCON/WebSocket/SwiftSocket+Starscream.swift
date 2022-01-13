@@ -29,7 +29,7 @@ extension SwiftSocket {
             }
             socket.write(string: json) { [weak self] in
                 print("Write Success")
-                self?.socketReceiveBlocks[0]?(RCONPacket(Identifier: identifier, Message: input, Type: "SEND"), nil)
+                self?.socketReceiveBlocks[SocketReceiver.Console.rawValue]?(RCONPacket(Identifier: identifier, Message: input, Type: "SEND"), nil)
             }
         } catch let error {
             print("Send failure: \(error)")
@@ -77,8 +77,11 @@ extension SwiftSocket: WebSocketDelegate {
                 /*
                  text("{\n  \"Message\": \"192.168.0.189:53710/12312312/USERNAME joined [windows/12312312]\",\n  \"Identifier\": 0,\n  \"Type\": \"Generic\",\n  \"Stacktrace\": \"\"\n}")
                  */
-                if packet.Identifier == 0 && packet.Message.contains("joined") {
-                    // TODO: refresh player list
+                if packet.Identifier == SocketReceiver.Console.rawValue && packet.Message.contains("joined") {
+                    NotificationCenter.default.post(name: .RustPlayerListChanged, object: nil)
+                }
+                if packet.Identifier == SocketReceiver.Console.rawValue && packet.Message.contains("left") { // FIXME:
+                    NotificationCenter.default.post(name: .RustPlayerListChanged, object: nil)
                 }
                 
             } catch let error {

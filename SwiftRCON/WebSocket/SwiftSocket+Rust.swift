@@ -34,7 +34,7 @@ protocol RustProtocol {
 }
 
 extension Notification.Name {
-    static let RustConsoleUpdated = Notification.Name("RustConsoleUpdated")
+    static let RustPlayerListChanged = Notification.Name("RustPlayerListChanged")
 }
 
 
@@ -128,8 +128,8 @@ extension SwiftSocket: RustProtocol {
     }
     
     func requestConsoleRealtimeLog(polling: @escaping (RustConsole?, Error?) -> Void) {
-        socketReceiveBlocks[0] = nil
-        socketReceiveBlocks[0] = { (packet, error) in
+        socketReceiveBlocks[SocketReceiver.Console.rawValue] = nil
+        socketReceiveBlocks[SocketReceiver.Console.rawValue] = { (packet, error) in
             
             if let error = error {
                 polling(nil, SwiftSocKetError.SocketError(error.localizedDescription))
@@ -172,8 +172,8 @@ extension SwiftSocket: RustProtocol {
     }
     
     func requestChatRealtime(polling: @escaping (RustChat?, Error?) -> Void) {
-        socketReceiveBlocks[-1] = nil
-        socketReceiveBlocks[-1] = { (packet, error) in
+        socketReceiveBlocks[SocketReceiver.Chat.rawValue] = nil
+        socketReceiveBlocks[SocketReceiver.Chat.rawValue] = { (packet, error) in
             
             if let error = error {
                 polling(nil, SwiftSocKetError.SocketError(error.localizedDescription))

@@ -81,6 +81,9 @@ class PlayersViewController: UITableViewController, PlayersDisplayLogic {
             self?.viewModel = nil
             self?.tableView.reloadData()
         }
+        NotificationCenter.default.addObserver(forName: .RustPlayerListChanged, object: nil, queue: .main) { [weak self] _ in
+            self?.fetchPlayerList()
+        }
     }
     
     
@@ -114,9 +117,7 @@ extension PlayersViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell: PlayersCell = tableView.dequeueReusableCell(withIdentifier: "PCELL", for: indexPath) as? PlayersCell else { return UITableViewCell() }
         guard let viewModel = viewModel else { return cell }
-        cell.playerName.text = viewModel.players[indexPath.row].displayName
-        cell.connectedTime.text = viewModel.players[indexPath.row].connectedTime
-        cell.ping.text = "Ping: \(viewModel.players[indexPath.row].ping)"
+        cell.bind(player: viewModel.players[indexPath.row])
         return cell
     }
     

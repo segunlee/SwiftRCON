@@ -26,4 +26,18 @@ enum Server {
 
 // TEMP
 var currentConnectInfo = Server.ConnectInfo()
-var activeSocket: SwiftSocket? = SwiftSocket(connectInfo: currentConnectInfo)
+var activeSocket: SwiftSocket? {
+    set { }
+    get {
+        if !currentConnectInfo.ip.isEmpty && !currentConnectInfo.rconPort.isEmpty && !currentConnectInfo.rconPassword.isEmpty {
+            if let _activeSocket = _activeSocket {
+                return _activeSocket
+            }
+            _activeSocket = SwiftSocket(connectInfo: currentConnectInfo)
+            return _activeSocket
+        }
+        return nil
+    }
+}
+
+private var _activeSocket: SwiftSocket?

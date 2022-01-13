@@ -27,6 +27,11 @@ extension Notification.Name {
     static let SocketDidDisconnect = Notification.Name("SocketDidDisconnect")
 }
 
+enum SocketReceiver: Int {
+    case Console = 0
+    case Chat = -1
+}
+
 class SwiftSocket {
     var socket: WebSocket
     var socketReceiveBlocks = [Int: SocketReceiveBlock]()

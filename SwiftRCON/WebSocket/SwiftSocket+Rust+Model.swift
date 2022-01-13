@@ -72,7 +72,7 @@ struct RustPlayer: Codable {
     let displayName: String
     let ping: Int
     let address: String
-    let connectedSeconds: Int
+    var connectedSeconds: Int
     let voiationLevel: Float
     let currentLevel: Float
     let unspentXP: Float
@@ -109,7 +109,7 @@ struct RustPlayer: Codable {
 extension RustPlayer {
     var connectedTime: String {
         let formatter = DateComponentsFormatter()
-        formatter.allowedUnits = [.hour, .minute]
+        formatter.allowedUnits = [.hour, .minute, .second]
         formatter.unitsStyle = .brief
         return formatter.string(from: TimeInterval(connectedSeconds)) ?? "-"
     }
