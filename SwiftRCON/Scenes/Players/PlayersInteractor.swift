@@ -14,21 +14,55 @@ import UIKit
 
 protocol PlayersBusinessLogic {
     func fetchPlayerList(request: Players.FetchPlayerList.Request)
+    func createMenu(to player: RustPlayer) -> UIMenu?
 }
 
 protocol PlayersDataStore {
-    //var name: String { get set }
+    var players: [RustPlayer] { get set }
 }
 
 class PlayersInteractor: PlayersBusinessLogic, PlayersDataStore {
     var presenter: PlayersPresentationLogic?
+    var players: [RustPlayer] = [RustPlayer]()
     
     // MARK: FETCH
     func fetchPlayerList(request: Players.FetchPlayerList.Request) {
         guard let activeSocket = activeSocket else { return }
         guard activeSocket.isConnected else { return }
         activeSocket.requestPlayerList(completion: { [weak self] players, error in
+            self?.players = players
             self?.presenter?.presentFetchPlayerList(response: .init(players: players))
         })
+    }
+    
+    
+    // MARK: MENU
+    func createMenu(to player: RustPlayer) -> UIMenu? {
+        let kill = UIAction(title: "Kill player", image: UIImage(systemName: "flame")) { (_) in
+            activeSocket?.send(input: "killplayer \(player.steamID)")
+        }
+        
+        let kick = UIAction(title: "Kick", image: UIImage(systemName: "person.crop.circle.badge.minus")) { (_) in
+            AlertProvider.textField(title: "Reason", pTitle: "Kick", placeholder: "Optional") { text in
+                activeSocket?.send(input: "kick \(player.steamID) \(text ?? "")")
+            }
+        }
+        
+        let ban = UIAction(title: "Ban", image: UIImage(systemName: "person.crop.circle.badge.xmark")) { (_) in
+            AlertProvider.textField(title: "Ban", pTitle: "Ban", placeholder: "Optional") { text in
+                activeSocket?.send(input: "banid \(player.steamID) \(text ?? "")")
+            }
+        }
+        
+        let teleport = UIAction(title: "Teleport to", image: UIImage(systemName: "location")) { [weak self] (_) in
+            guard let players = self?.players else { return }
+            AlertProvider.actionSheet(title: "Teleport to", dataSoruce: players.compactMap({ $0.displayName })) { name in
+                activeSocket?.send(input: "teleport \(player.displayName) \(name)")
+            }
+        }
+        
+        let firstRow = UIMenu(title: "", options: .displayInline, children: [kill, kick, ban])
+        let secondRow = UIMenu(title: "", options: .displayInline, children: [teleport])
+        return UIMenu(title: player.displayName, children: [firstRow, secondRow])
     }
 }

@@ -30,6 +30,7 @@ class MessageInputView: UIControl {
     }
 
     open func setup() {
+        backgroundColor = .lightGray.withAlphaComponent(0.3)
         setupOwnHeight()
         setupTextView()
         setupSendButton()
@@ -87,13 +88,14 @@ extension MessageInputView {
 extension MessageInputView: UITextViewDelegate {
     private func setupTextView() {
         addSubview(textView)
+        let margin = 5.0
         textView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
         textView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
-        textView.topAnchor.constraint(equalTo: topAnchor, constant: 5).isActive = true
-        textView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5).isActive = true
+        textView.topAnchor.constraint(equalTo: topAnchor, constant: margin).isActive = true
+        textView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -margin).isActive = true
         textView.delegate = self
-        textView.backgroundColor = .red
-        textView.cornerRadius = minHeight / 2
+        textView.backgroundColor = .white
+        textView.cornerRadius = (minHeight - margin * 2) / 2
     }
     
     func textViewDidChange(_ textView: UITextView) {
@@ -118,8 +120,8 @@ extension MessageInputView {
     private func setupSendButton() {
         addSubview(sendButton)
         sendButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15).isActive = true
-        sendButton.widthAnchor.constraint(equalToConstant: 35).isActive = true
-        sendButton.heightAnchor.constraint(equalToConstant: 35).isActive = true
+        sendButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        sendButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
         sendButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         sendButton.isEnabled = false
         sendButton.addTarget(self, action: #selector(didTapSendButton(_:)), for: .touchUpInside)

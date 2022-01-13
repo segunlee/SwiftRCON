@@ -177,7 +177,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ping: 12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gv7-rf-vRP">
-                                            <rect key="frame" x="153" y="32" width="45" height="15"/>
+                                            <rect key="frame" x="325.5" y="32" width="45" height="15"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
@@ -191,7 +191,7 @@
                                         <constraint firstItem="FjB-7u-qzN" firstAttribute="top" secondItem="99D-to-9rr" secondAttribute="bottom" constant="5" id="NkB-d1-S4J"/>
                                         <constraint firstItem="FfT-Hn-voI" firstAttribute="centerY" secondItem="zfd-Ss-akj" secondAttribute="centerY" id="SPC-1V-uoK"/>
                                         <constraint firstItem="99D-to-9rr" firstAttribute="top" secondItem="zfd-Ss-akj" secondAttribute="top" constant="10" id="SUR-ht-mfe"/>
-                                        <constraint firstItem="gv7-rf-vRP" firstAttribute="leading" secondItem="FjB-7u-qzN" secondAttribute="trailing" constant="5" id="TV9-Cb-thZ"/>
+                                        <constraint firstAttribute="trailing" secondItem="gv7-rf-vRP" secondAttribute="trailing" constant="15" id="XNK-aL-M28"/>
                                         <constraint firstItem="gv7-rf-vRP" firstAttribute="centerY" secondItem="FjB-7u-qzN" secondAttribute="centerY" id="idO-x9-2BD"/>
                                         <constraint firstItem="FfT-Hn-voI" firstAttribute="leading" secondItem="zfd-Ss-akj" secondAttribute="leading" constant="15" id="zwk-gW-O6o"/>
                                     </constraints>

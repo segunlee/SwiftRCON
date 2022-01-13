@@ -43,6 +43,7 @@
 		B384540C278D4BA200153543 /* ChatInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3845406278D4BA100153543 /* ChatInteractor.swift */; };
 		B3891C83278E9ED700E01AB2 /* KeyboardLayoutGuide in Frameworks */ = {isa = PBXBuildFile; productRef = B3891C82278E9ED700E01AB2 /* KeyboardLayoutGuide */; };
 		B3891C87278EA12C00E01AB2 /* MessageInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3891C86278EA12C00E01AB2 /* MessageInputView.swift */; };
+		B3A046C327905214008D0D7E /* AlertProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A046C227905214008D0D7E /* AlertProvider.swift */; };
 		B3F355F3278EF29D00F3CF9D /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B3F355F2278EF29D00F3CF9D /* Settings.bundle */; };
 /* End PBXBuildFile section */
 
@@ -102,6 +103,8 @@
 		B3845405278D4BA100153543 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		B3845406278D4BA100153543 /* ChatInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatInteractor.swift; sourceTree = "<group>"; };
 		B3891C86278EA12C00E01AB2 /* MessageInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageInputView.swift; sourceTree = "<group>"; };
+		B3A046C027904E98008D0D7E /* RustRCONCommands.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = RustRCONCommands.md; sourceTree = "<group>"; };
+		B3A046C227905214008D0D7E /* AlertProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertProvider.swift; sourceTree = "<group>"; };
 		B3F355F2278EF29D00F3CF9D /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -275,6 +278,7 @@
 		B3891C84278EA0F600E01AB2 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				B3A046C1279051AE008D0D7E /* AlertProvider */,
 				B3891C85278EA10A00E01AB2 /* MessageInputView */,
 			);
 			path = Components;
@@ -288,11 +292,20 @@
 			path = MessageInputView;
 			sourceTree = "<group>";
 		};
+		B3A046C1279051AE008D0D7E /* AlertProvider */ = {
+			isa = PBXGroup;
+			children = (
+				B3A046C227905214008D0D7E /* AlertProvider.swift */,
+			);
+			path = AlertProvider;
+			sourceTree = "<group>";
+		};
 		B3F355F1278EF23500F3CF9D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
 				B351B817278BC3C50011DCD4 /* Assets.xcassets */,
 				B3F355F2278EF29D00F3CF9D /* Settings.bundle */,
+				B3A046C027904E98008D0D7E /* RustRCONCommands.md */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -439,6 +452,7 @@
 			files = (
 				B351B852278BFE5E0011DCD4 /* PlayersWorker.swift in Sources */,
 				B384540A278D4BA200153543 /* ChatModels.swift in Sources */,
+				B3A046C327905214008D0D7E /* AlertProvider.swift in Sources */,
 				B351B854278BFE5E0011DCD4 /* PlayersModels.swift in Sources */,
 				B3845407278D4BA200153543 /* ChatPresenter.swift in Sources */,
 				B351B869278C14A50011DCD4 /* ConsoleWorker.swift in Sources */,

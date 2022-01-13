@@ -8,7 +8,7 @@
 import UIKit
 
 class PlayersCell: UITableViewCell {
-    
+    static let identifier = "PCELL"
     @IBOutlet weak var playerIcon: UIImageView!
     @IBOutlet weak var playerName: UILabel!
     @IBOutlet weak var connectedTime: UILabel!
@@ -38,16 +38,17 @@ class PlayersCell: UITableViewCell {
     func bind(player: RustPlayer) {
         self.player = player
         playerName.text = player.displayName
-        connectedTime.text = player.connectedTime
         ping.text = "Ping: \(player.ping)"
-        
+        updateConntedTime()
         
         timer?.invalidate()
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [weak self] _ in
             self?.player?.connectedSeconds += 1
-            if let time = self?.player?.connectedTime {
-                self?.connectedTime.text = time
-            }
+            self?.updateConntedTime()
         })
+    }
+    
+    private func updateConntedTime() {
+        connectedTime.text = "Connected: " + (player?.connectedTime ?? "unknown")
     }
 }

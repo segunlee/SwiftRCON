@@ -115,16 +115,26 @@ extension PlayersViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell: PlayersCell = tableView.dequeueReusableCell(withIdentifier: "PCELL", for: indexPath) as? PlayersCell else { return UITableViewCell() }
+        guard let cell: PlayersCell = tableView.dequeueReusableCell(withIdentifier: PlayersCell.identifier, for: indexPath) as? PlayersCell else { return UITableViewCell() }
         guard let viewModel = viewModel else { return cell }
         cell.bind(player: viewModel.players[indexPath.row])
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
     }
     
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        
     }
     
+    override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        guard let player = viewModel?.players[indexPath.row] else { return nil }
+        return UIContextMenuConfiguration(identifier: indexPath as NSIndexPath, previewProvider: { () -> UIViewController? in
+            return nil
+        }, actionProvider: { [weak self] (_) -> UIMenu? in
+            return self?.interactor?.createMenu(to: player)
+        })
+    }
 }
