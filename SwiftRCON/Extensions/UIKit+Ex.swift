@@ -19,6 +19,12 @@ extension UIView {
             layer.cornerRadius = newValue
         }
     }
+    
+    func roundCorners(cornerRadius: CGFloat, maskedCorners: CACornerMask) {
+        clipsToBounds = true
+        layer.cornerRadius = cornerRadius
+        layer.maskedCorners = CACornerMask(arrayLiteral: maskedCorners)
+    }
 }
 
 extension UITextView {
@@ -28,6 +34,19 @@ extension UITextView {
         
         let range = NSMakeRange(text.lengthOfBytes(using: .utf8), 0);
         scrollRangeToVisible(range);
+    }
+}
+
+extension UITableView {
+    var lastIndexPath: IndexPath? {
+        guard numberOfSections > 0 else { return nil }
+        guard numberOfRows(inSection: numberOfSections - 1) > 0 else { return nil }
+        return IndexPath(row: numberOfRows(inSection: numberOfSections - 1) - 1, section: numberOfSections - 1)
+    }
+    
+    func scrollToBottom(animated: Bool = false) {
+        guard let indexPath = lastIndexPath else { return }
+        scrollToRow(at: indexPath, at: .bottom, animated: animated)
     }
 }
 
@@ -61,11 +80,24 @@ extension UIApplication {
     }
 }
 
-
 extension Date {
     func toString(dateFormat: String = "a hh:mm") -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = dateFormat
         return dateFormatter.string(from: self)
+    }
+}
+
+extension UIColor {
+    convenience init(red: Int, green: Int, blue: Int, a: Int = 0xFF) {
+        self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: CGFloat(a) / 255.0)
+    }
+
+    convenience init(rgb: Int) {
+        self.init(red: (rgb >> 16) & 0xFF, green: (rgb >> 8) & 0xFF, blue: rgb & 0xFF)
+    }
+
+    convenience init(argb: Int) {
+        self.init(red: (argb >> 16) & 0xFF, green: (argb >> 8) & 0xFF, blue: argb & 0xFF, a: (argb >> 24) & 0xFF)
     }
 }

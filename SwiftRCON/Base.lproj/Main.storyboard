@@ -75,13 +75,13 @@
         <scene sceneID="AEq-H4-VSK">
             <objects>
                 <navigationController id="HI8-En-Zfc" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Chat" image="bubble.right.circle" catalog="system" selectedImage="bubble.right.circle.fill" id="Ndb-Kx-mtY"/>
+                    <tabBarItem key="tabBarItem" title="Chat" image="bubble.right" catalog="system" selectedImage="bubble.right.fill" id="Ndb-Kx-mtY"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ElE-cF-cUt">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="Miq-5e-Y0W" kind="relationship" relationship="rootViewController" id="OYs-Nr-Aje"/>
+                        <segue destination="oVC-2W-LvM" kind="relationship" relationship="rootViewController" id="HQl-UZ-J5b"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mFz-C7-epE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -89,31 +89,44 @@
             <point key="canvasLocation" x="-1023" y="1039"/>
         </scene>
         <!--Chat View Controller-->
-        <scene sceneID="Ddx-Yc-Csn">
+        <scene sceneID="YXV-t8-zdk">
             <objects>
-                <tableViewController id="Miq-5e-Y0W" customClass="ChatViewController" customModule="SwiftRCON" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="VIs-1i-sQ0">
+                <viewController id="oVC-2W-LvM" customClass="ChatViewController" customModule="SwiftRCON" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="FQb-yo-xGD">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="pup-XI-fap">
+                                <rect key="frame" x="0.0" y="88" width="414" height="677"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IgJ-b7-aeE">
+                                <rect key="frame" x="0.0" y="765" width="414" height="48"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" priority="250" constant="48" id="z5A-w7-sDf"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="P5d-lq-2Kd"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="mAm-MW-26G">
-                                <rect key="frame" x="0.0" y="44.5" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mAm-MW-26G" id="VR7-Ix-cK3">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="Miq-5e-Y0W" id="KaO-VH-JPY"/>
-                            <outlet property="delegate" destination="Miq-5e-Y0W" id="CP0-6Z-5I4"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" id="Oex-xA-Hf5"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FXb-Xb-FU7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                        <constraints>
+                            <constraint firstItem="pup-XI-fap" firstAttribute="leading" secondItem="FQb-yo-xGD" secondAttribute="leading" id="1Ly-wR-XFu"/>
+                            <constraint firstItem="IgJ-b7-aeE" firstAttribute="leading" secondItem="P5d-lq-2Kd" secondAttribute="leading" id="DYJ-VB-nHy"/>
+                            <constraint firstItem="IgJ-b7-aeE" firstAttribute="top" secondItem="pup-XI-fap" secondAttribute="bottom" id="Unx-yo-yXI"/>
+                            <constraint firstItem="P5d-lq-2Kd" firstAttribute="bottom" secondItem="IgJ-b7-aeE" secondAttribute="bottom" placeholder="YES" id="anf-aA-Pj5"/>
+                            <constraint firstItem="pup-XI-fap" firstAttribute="top" secondItem="P5d-lq-2Kd" secondAttribute="top" id="jYp-b8-XiG"/>
+                            <constraint firstItem="P5d-lq-2Kd" firstAttribute="trailing" secondItem="pup-XI-fap" secondAttribute="trailing" id="lMo-ub-lRu"/>
+                            <constraint firstItem="P5d-lq-2Kd" firstAttribute="trailing" secondItem="IgJ-b7-aeE" secondAttribute="trailing" id="wIM-pT-UZE"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="jiu-hk-0Kn"/>
+                    <connections>
+                        <outlet property="inputContainerView" destination="IgJ-b7-aeE" id="L2B-Ik-dev"/>
+                        <outlet property="tableView" destination="pup-XI-fap" id="JSh-Ib-sdv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6ha-Lo-uye" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-168" y="1039"/>
         </scene>
@@ -230,8 +243,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="bubble.right.circle" catalog="system" width="128" height="121"/>
-        <image name="bubble.right.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="bubble.right" catalog="system" width="128" height="110"/>
+        <image name="bubble.right.fill" catalog="system" width="128" height="110"/>
         <image name="person.3" catalog="system" width="128" height="62"/>
         <image name="person.3.fill" catalog="system" width="128" height="61"/>
         <image name="person.crop.circle.fill" catalog="system" width="128" height="121"/>

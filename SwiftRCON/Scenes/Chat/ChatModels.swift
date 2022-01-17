@@ -55,4 +55,8 @@ extension ChatMessage: ChatMessageProtocol {
     var steamID: String {
         return userId
     }
+    
+    var channelType: ChatChannelType {
+        return ChatChannelType(rawValue: channel) ?? .Global
+    }
 }

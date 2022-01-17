@@ -11,6 +11,7 @@
 //
 
 import UIKit
+import KeyboardLayoutGuide
 
 
 protocol ChatDisplayLogic: AnyObject {
@@ -18,7 +19,7 @@ protocol ChatDisplayLogic: AnyObject {
     func displayReceiveChat(viewModel: Chat.ReceiveChat.ViewModel)
 }
 
-class ChatViewController: UITableViewController, ChatDisplayLogic {
+class ChatViewController: UIViewController, ChatDisplayLogic {
     var interactor: ChatBusinessLogic?
     var router: (NSObjectProtocol & ChatRoutingLogic & ChatDataPassing)?
     
@@ -65,46 +66,81 @@ class ChatViewController: UITableViewController, ChatDisplayLogic {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Chats"
+        setupTableView()
+        setupInputView()
         handleNotifications()
-        chatProvier.registerTableView(tableView)
         interactor?.fetchChat(request: .init())
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+    }
     
     // MARK: Noticication
     func handleNotifications() {
         NotificationCenter.default.addObserver(forName: .SocketDidConnect, object: nil, queue: .main) { [weak self] _ in
-            self?.chatProvier.messages.removeAll()
-            self?.tableView.reloadData()
+            self?.chatProvier.clear()
             self?.interactor?.fetchChat(request: .init())
         }
         NotificationCenter.default.addObserver(forName: .SocketDidDisconnect, object: nil, queue: .main) { _ in
-//            self?.chatProvier.messages.removeAll()
+
         }
     }
     
+    // MARK: INPUT
+    @IBOutlet weak var inputContainerView: UIView!
+    private var  messageInputView = MessageInputView()
+    func setupInputView() {
+        inputContainerView.bottomAnchor.constraint(equalTo: view.keyboardLayoutGuide.topAnchor).isActive = true
+        inputContainerView.addSubview(messageInputView)
+        
+        messageInputView.translatesAutoresizingMaskIntoConstraints = false
+        messageInputView.topAnchor.constraint(equalTo: inputContainerView.topAnchor).isActive = true
+        messageInputView.leadingAnchor.constraint(equalTo: inputContainerView.leadingAnchor).isActive = true
+        messageInputView.trailingAnchor.constraint(equalTo: inputContainerView.trailingAnchor).isActive = true
+        messageInputView.bottomAnchor.constraint(equalTo: inputContainerView.bottomAnchor).isActive = true
+        messageInputView.addTarget(self, action: #selector(inputViewPrimaryActionTriggered(inputView:)), for: .primaryActionTriggered)
+    }
+    
+    @objc func inputViewPrimaryActionTriggered(inputView: MessageInputView) {
+        activeSocket?.send(input: "say \(inputView.message)")
+    }
     
     // MARK: CHAT
-    var chatProvier = ChatProvider()
+    @IBOutlet weak var tableView: UITableView!
+    private var chatProvier = ChatProvider()
+
+    func setupTableView() {
+        chatProvier.registerTableView(tableView)
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(keyboardDismiss))
+        tapGesture.cancelsTouchesInView = true
+        tableView.addGestureRecognizer(tapGesture)
+    }
     
     func displayFetchChat(viewModel: Chat.FetchChat.ViewModel) {
-        // TODO:..
         chatProvier.initial(messages: viewModel.chats)
-        tableView.reloadData()
         interactor?.receiveChat(request: .init())
     }
     
     func displayReceiveChat(viewModel: Chat.ReceiveChat.ViewModel) {
-        // TODO:..
         chatProvier.insert(message: viewModel.message)
-        tableView.reloadData()
+    }
+    
+    @objc func keyboardDismiss() {
+        view.endEditing(true)
+    }
+    
+    @objc func keyboardWillShow(_ notification: Notification) {
+        tableView.scrollToBottom()
     }
 }

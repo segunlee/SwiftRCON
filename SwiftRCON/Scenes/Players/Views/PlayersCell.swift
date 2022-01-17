@@ -19,15 +19,12 @@ class PlayersCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        playerIcon.cornerRadius = playerIcon.bounds.width / 2
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
-    
     
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -37,6 +34,7 @@ class PlayersCell: UITableViewCell {
     
     func bind(player: RustPlayer) {
         self.player = player
+        playerIcon.image = UIImage(named: "RUSTCI")
         playerName.text = player.displayName
         ping.text = "Ping: \(player.ping)"
         updateConntedTime()

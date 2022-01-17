@@ -137,15 +137,15 @@ class ConsoleViewController: UIViewController, ConsoleDisplayLogic {
     private var  messageInputView = MessageInputView()
     
     func setupInputView() {
-        messageInputView.translatesAutoresizingMaskIntoConstraints = false
+        inputContainerView.bottomAnchor.constraint(equalTo: view.keyboardLayoutGuide.topAnchor).isActive = true
         inputContainerView.addSubview(messageInputView)
+        
+        messageInputView.translatesAutoresizingMaskIntoConstraints = false
         messageInputView.topAnchor.constraint(equalTo: inputContainerView.topAnchor).isActive = true
         messageInputView.leadingAnchor.constraint(equalTo: inputContainerView.leadingAnchor).isActive = true
         messageInputView.trailingAnchor.constraint(equalTo: inputContainerView.trailingAnchor).isActive = true
         messageInputView.bottomAnchor.constraint(equalTo: inputContainerView.bottomAnchor).isActive = true
         messageInputView.addTarget(self, action: #selector(inputViewPrimaryActionTriggered(inputView:)), for: .primaryActionTriggered)
-
-        inputContainerView.bottomAnchor.constraint(equalTo: view.keyboardLayoutGuide.topAnchor).isActive = true
     }
     
     @objc func keyboardWillShow(_ notification: Notification) {

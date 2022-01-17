@@ -30,7 +30,7 @@ class MessageInputView: UIControl {
     }
 
     open func setup() {
-        backgroundColor = .lightGray.withAlphaComponent(0.3)
+        backgroundColor = UIColor(rgb: 0xF0F0F0)
         setupOwnHeight()
         setupTextView()
         setupSendButton()

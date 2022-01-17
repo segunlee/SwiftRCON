@@ -11,9 +11,13 @@ import UIKit
 
 class ChatProvider: NSObject {
     var messages: [ChatMessageProtocol] = [ChatMessageProtocol]()
+    weak var tableView: UITableView?
     
     func registerTableView(_ tableView: UITableView) {
-        tableView.register(UINib(nibName: "ChatBubbleCell", bundle: nil), forCellReuseIdentifier: ChatBubbleCell.identifier)
+        self.tableView = tableView
+        tableView.register(UINib(nibName: "ChatBubbleOutgoingCell", bundle: nil), forCellReuseIdentifier: ChatBubbleOutgoingCell.identifier)
+        tableView.register(UINib(nibName: "ChatBubbleIncomingCell", bundle: nil), forCellReuseIdentifier: ChatBubbleIncomingCell.identifier)
+        
         tableView.rowHeight = UITableView.automaticDimension
         tableView.dataSource = self
         tableView.delegate = self
@@ -22,11 +26,24 @@ class ChatProvider: NSObject {
     func initial(messages: [ChatMessageProtocol]) {
         self.messages.removeAll()
         self.messages.append(contentsOf: messages)
+        tableView?.reloadData()
+        tableView?.scrollToBottom()
+    }
+    
+    func clear() {
+        messages.removeAll()
+        tableView?.reloadData()
     }
     
     func insert(message: ChatMessageProtocol) {
         messages.append(message)
-        // TODO: s
+        guard let indexPath = tableView?.lastIndexPath else {
+            tableView?.reloadData()
+            return
+        }
+        
+        tableView?.insertRows(at: [IndexPath(row: indexPath.row + 1, section: indexPath.section)], with: .fade)
+        tableView?.scrollToBottom(animated: true)
     }
 }
 
@@ -61,9 +78,38 @@ extension ChatProvider: UITableViewDataSource {
         nil
     }
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        .leastNonzeroMagnitude
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        .leastNonzeroMagnitude
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: ChatBubbleCell.identifier, for: indexPath) as? ChatBubbleCell else { return UITableViewCell() }
-        cell.bind(to: messages[indexPath.row])
+        let message = messages[indexPath.row]
+        if message.isIncoming {
+            let cell = tableView.dequeueReusableCell(withIdentifier: ChatBubbleIncomingCell.identifier, for: indexPath) as! ChatBubbleIncomingCell
+            cell.userImageView.image = UIImage(named: "RUSTCI")
+            cell.userNameLabel.text = message.name
+            cell.messageLabel.text = message.message
+            cell.dateLabel.text = message.date.toString()
+            
+            switch message.channelType {
+            case .Team:
+                cell.messageBackgroundColorView.backgroundColor = UIColor(rgb: 0x835EEB)
+                cell.messageLabel.textColor = .white
+            default:
+                cell.messageBackgroundColorView.backgroundColor = UIColor(rgb: 0xF0F0F0)
+                cell.messageLabel.textColor = .darkGray
+            }
+            
+            return cell
+        }
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: ChatBubbleOutgoingCell.identifier, for: indexPath) as! ChatBubbleOutgoingCell
+        cell.messageLabel.text = message.message
+        cell.dateLabel.text = message.date.toString()
         return cell
     }
 }
