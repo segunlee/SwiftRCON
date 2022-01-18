@@ -10,7 +10,6 @@ import UIKit
 
 
 class AlertProvider {
-    
     class func textField(title: String,
                          pTitle: String = "Ok",
                          nTitle: String = "Cancel",
@@ -41,6 +40,12 @@ class AlertProvider {
                 selectionClosure(name)
             }))
         }
+        UIApplication.getTopMostViewController()?.present(alert, animated: true, completion: nil)
+    }
+    
+    class func message(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         UIApplication.getTopMostViewController()?.present(alert, animated: true, completion: nil)
     }
 }

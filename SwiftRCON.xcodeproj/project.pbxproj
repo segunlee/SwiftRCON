@@ -47,6 +47,12 @@
 		B38A06F62790FB0C005C530A /* ChatBubbleIncomingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B38A06F42790FB0C005C530A /* ChatBubbleIncomingCell.xib */; };
 		B38A06F92790FB3C005C530A /* ChatBubbleOutgoingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38A06F72790FB3C005C530A /* ChatBubbleOutgoingCell.swift */; };
 		B38A06FA2790FB3C005C530A /* ChatBubbleOutgoingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B38A06F82790FB3C005C530A /* ChatBubbleOutgoingCell.xib */; };
+		B3932BE82796DD250059E420 /* SettingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3932BE22796DD250059E420 /* SettingPresenter.swift */; };
+		B3932BE92796DD250059E420 /* SettingWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3932BE32796DD250059E420 /* SettingWorker.swift */; };
+		B3932BEA2796DD250059E420 /* SettingRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3932BE42796DD250059E420 /* SettingRouter.swift */; };
+		B3932BEB2796DD250059E420 /* SettingModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3932BE52796DD250059E420 /* SettingModels.swift */; };
+		B3932BEC2796DD250059E420 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3932BE62796DD250059E420 /* SettingViewController.swift */; };
+		B3932BED2796DD250059E420 /* SettingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3932BE72796DD250059E420 /* SettingInteractor.swift */; };
 		B3A046C327905214008D0D7E /* AlertProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A046C227905214008D0D7E /* AlertProvider.swift */; };
 		B3A046CC27906455008D0D7E /* ChatMessageProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A046CB27906455008D0D7E /* ChatMessageProtocol.swift */; };
 		B3A046CF279065F2008D0D7E /* ChatProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A046CE279065F2008D0D7E /* ChatProvider.swift */; };
@@ -113,6 +119,12 @@
 		B38A06F42790FB0C005C530A /* ChatBubbleIncomingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatBubbleIncomingCell.xib; sourceTree = "<group>"; };
 		B38A06F72790FB3C005C530A /* ChatBubbleOutgoingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBubbleOutgoingCell.swift; sourceTree = "<group>"; };
 		B38A06F82790FB3C005C530A /* ChatBubbleOutgoingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatBubbleOutgoingCell.xib; sourceTree = "<group>"; };
+		B3932BE22796DD250059E420 /* SettingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingPresenter.swift; sourceTree = "<group>"; };
+		B3932BE32796DD250059E420 /* SettingWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingWorker.swift; sourceTree = "<group>"; };
+		B3932BE42796DD250059E420 /* SettingRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingRouter.swift; sourceTree = "<group>"; };
+		B3932BE52796DD250059E420 /* SettingModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingModels.swift; sourceTree = "<group>"; };
+		B3932BE62796DD250059E420 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		B3932BE72796DD250059E420 /* SettingInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingInteractor.swift; sourceTree = "<group>"; };
 		B3A046C027904E98008D0D7E /* RustRCONCommands.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = RustRCONCommands.md; sourceTree = "<group>"; };
 		B3A046C227905214008D0D7E /* AlertProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertProvider.swift; sourceTree = "<group>"; };
 		B3A046CB27906455008D0D7E /* ChatMessageProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageProtocol.swift; sourceTree = "<group>"; };
@@ -219,6 +231,7 @@
 				B351B857278BFE630011DCD4 /* Players */,
 				B351B861278C148D0011DCD4 /* Console */,
 				B3845400278D4B7A00153543 /* Chat */,
+				B38A06FB2796DBCB005C530A /* Setting */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -303,6 +316,19 @@
 				B3891C86278EA12C00E01AB2 /* MessageInputView.swift */,
 			);
 			path = MessageInputView;
+			sourceTree = "<group>";
+		};
+		B38A06FB2796DBCB005C530A /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				B3932BE22796DD250059E420 /* SettingPresenter.swift */,
+				B3932BE32796DD250059E420 /* SettingWorker.swift */,
+				B3932BE42796DD250059E420 /* SettingRouter.swift */,
+				B3932BE52796DD250059E420 /* SettingModels.swift */,
+				B3932BE62796DD250059E420 /* SettingViewController.swift */,
+				B3932BE72796DD250059E420 /* SettingInteractor.swift */,
+			);
+			path = Setting;
 			sourceTree = "<group>";
 		};
 		B3A046C1279051AE008D0D7E /* AlertProvider */ = {
@@ -508,9 +534,11 @@
 				B351B854278BFE5E0011DCD4 /* PlayersModels.swift in Sources */,
 				B3845407278D4BA200153543 /* ChatPresenter.swift in Sources */,
 				B351B869278C14A50011DCD4 /* ConsoleWorker.swift in Sources */,
+				B3932BED2796DD250059E420 /* SettingInteractor.swift in Sources */,
 				B384540C278D4BA200153543 /* ChatInteractor.swift in Sources */,
 				B351B851278BFE5E0011DCD4 /* PlayersPresenter.swift in Sources */,
 				B351B85A278BFF900011DCD4 /* PlayersCell.swift in Sources */,
+				B3932BEA2796DD250059E420 /* SettingRouter.swift in Sources */,
 				B38A06F52790FB0C005C530A /* ChatBubbleIncomingCell.swift in Sources */,
 				B351B853278BFE5E0011DCD4 /* PlayersRouter.swift in Sources */,
 				B351B868278C14A50011DCD4 /* ConsolePresenter.swift in Sources */,
@@ -523,16 +551,20 @@
 				B351B80F278BC3C40011DCD4 /* AppDelegate.swift in Sources */,
 				B351B811278BC3C40011DCD4 /* SceneDelegate.swift in Sources */,
 				B351B843278BC4B00011DCD4 /* SwiftSocket.swift in Sources */,
+				B3932BE82796DD250059E420 /* SettingPresenter.swift in Sources */,
+				B3932BE92796DD250059E420 /* SettingWorker.swift in Sources */,
 				B351B845278BC5BC0011DCD4 /* SwiftSocket+Starscream.swift in Sources */,
 				B351B85D278C013B0011DCD4 /* UIKit+Ex.swift in Sources */,
 				B351B849278BDCD60011DCD4 /* SwiftSocket+Rust+Model.swift in Sources */,
 				B3A046CF279065F2008D0D7E /* ChatProvider.swift in Sources */,
 				B351B856278BFE5E0011DCD4 /* PlayersInteractor.swift in Sources */,
 				B351B86C278C14A50011DCD4 /* ConsoleViewController.swift in Sources */,
+				B3932BEB2796DD250059E420 /* SettingModels.swift in Sources */,
 				B3845408278D4BA200153543 /* ChatWorker.swift in Sources */,
 				B351B847278BC8AE0011DCD4 /* SwiftSocket+Rust.swift in Sources */,
 				B351B86A278C14A50011DCD4 /* ConsoleRouter.swift in Sources */,
 				B384540B278D4BA200153543 /* ChatViewController.swift in Sources */,
+				B3932BEC2796DD250059E420 /* SettingViewController.swift in Sources */,
 				B3845409278D4BA200153543 /* ChatRouter.swift in Sources */,
 				B38A06F92790FB3C005C530A /* ChatBubbleOutgoingCell.swift in Sources */,
 			);

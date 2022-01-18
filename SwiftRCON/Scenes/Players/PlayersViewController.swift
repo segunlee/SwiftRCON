@@ -90,7 +90,7 @@ class PlayersViewController: UITableViewController, PlayersDisplayLogic {
     // MARK: FETCH
     var viewModel: Players.FetchPlayerList.ViewModel?
     func fetchPlayerList() {
-        interactor?.fetchPlayerList(request: .init(connectInfo: currentConnectInfo))
+        interactor?.fetchPlayerList(request: .init(connectInfo: connectInfo))
     }
     
     func displayFetchPlayerList(viewModel: Players.FetchPlayerList.ViewModel) {

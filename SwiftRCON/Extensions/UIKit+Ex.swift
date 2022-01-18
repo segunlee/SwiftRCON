@@ -37,6 +37,37 @@ extension UITextView {
     }
 }
 
+extension UITextField{
+    @IBInspectable var doneAccessory: Bool{
+        get {
+            return self.doneAccessory
+        }
+        set (hasDone) {
+            if hasDone {
+                addDoneButtonOnKeyboard()
+            }
+        }
+    }
+    
+    func addDoneButtonOnKeyboard() {
+        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
+        doneToolbar.barStyle = .default
+        
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(self.doneButtonAction))
+        
+        let items = [flexSpace, done]
+        doneToolbar.items = items
+        doneToolbar.sizeToFit()
+        
+        inputAccessoryView = doneToolbar
+    }
+    
+    @objc func doneButtonAction() {
+        resignFirstResponder()
+    }
+}
+
 extension UITableView {
     var lastIndexPath: IndexPath? {
         guard numberOfSections > 0 else { return nil }
@@ -99,5 +130,11 @@ extension UIColor {
 
     convenience init(argb: Int) {
         self.init(red: (argb >> 16) & 0xFF, green: (argb >> 8) & 0xFF, blue: argb & 0xFF, a: (argb >> 24) & 0xFF)
+    }
+}
+
+extension String {
+    var isNumber : Bool {
+        !self.isEmpty && self.rangeOfCharacter(from: CharacterSet.decimalDigits.inverted) == nil
     }
 }
